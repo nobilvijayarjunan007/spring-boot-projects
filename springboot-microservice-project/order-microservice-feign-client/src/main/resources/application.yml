@@ -1,0 +1,20 @@
+server:
+  port: 8082  # Change this port for different services (e.g., 8082 for order-service)
+
+spring:
+  application:
+    name: order-microservice-feign-client  # Change this name for different services (e.g., order-service)
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000

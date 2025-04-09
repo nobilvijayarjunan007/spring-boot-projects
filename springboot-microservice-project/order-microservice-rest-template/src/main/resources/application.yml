@@ -1,0 +1,22 @@
+server:
+  port: 8083  # Change this port for different services (e.g., 8082 for order-service)
+
+spring:
+  application:
+    name: order-microservice-rest-template # Change this name for different services (e.g., order-service)
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      
+resilience4j:
+  circuitbreaker:
+    instances:
+      orderService:
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5000ms
+        permittedNumberOfCallsInHalfOpenState: 2
+        slidingWindowSize: 10

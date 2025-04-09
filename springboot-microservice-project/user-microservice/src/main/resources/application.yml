@@ -1,0 +1,22 @@
+server:
+  port: 8081  # Change this port for different services (e.g., 8082 for order-service)
+
+spring:
+  application:
+    name: user-microservice  # Change this name for different services (e.g., order-service)
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true # if it's false url like http://desktop-q6c0dfr:8081/users/message and true => http://192.168.46.207:8081/users/message
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
